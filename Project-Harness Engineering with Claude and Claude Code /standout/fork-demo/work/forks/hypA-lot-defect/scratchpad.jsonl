@@ -1,0 +1,1 @@
+{"hypothesis_id":"hypA-lot-defect","evidence":"5 defects on capacitor-bank-C-7 all trace to lot 2026-0430-B; DAR 0.39, ESR ~19 mOhm cluster within a single lot.","conclusion":"Most consistent with a dielectric/impregnation defect in lot 2026-0430-B. Recommend lot quarantine + sample retest.","ts":"2026-09-13T09:51:15.334385Z"}

@@ -1,0 +1,5 @@
+=== Fork isolation report ===
+  hypA-lot-defect: entries=['hypA-lot-defect'] isolated=True baseline_copied=True
+  hypB-equipment-wear: entries=['hypB-equipment-wear'] isolated=True baseline_copied=True
+  main after merge: ['hypA-lot-defect', 'hypB-equipment-wear'] (count=2)
+=== RESULT: isolation_ok=True merge_ok=True ===
