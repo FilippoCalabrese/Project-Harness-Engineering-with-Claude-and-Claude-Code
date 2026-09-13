@@ -1,0 +1,3 @@
+hot_state.json bytes:      661
+warm-tier total defects: 40
+defects returned by indexed query (since 2026-04-29): 1
