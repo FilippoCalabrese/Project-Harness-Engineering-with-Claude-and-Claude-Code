@@ -1,0 +1,30 @@
+.DS_Store
+.vscode
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+uv.lock
+
+# Test / type caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Capstone run artifacts (regenerable; curated copies live under the capstone evidence/ and standout/ folders)
+runs/
+
+# Multi-Shift generated working data (seeded/produced at runtime)
+Build a Multi-Shift Quality Monitoring System with Claude Orchestration/04-fork-scratchpad/solution/data/
+
+# Submission bundle (regenerable from evidence/ + reflection-brief.md + standout/)
+capstone-submission.zip
