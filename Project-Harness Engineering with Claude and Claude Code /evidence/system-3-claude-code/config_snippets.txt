@@ -1,0 +1,60 @@
+=== .claude/rules/api.md (frontmatter) ===
+---
+description: Conventions for Node.js API handlers
+paths:
+  - "src/api/**/*"
+---
+
+# API handler rules
+
+
+=== .claude/rules/tests.md (frontmatter) ===
+---
+description: Conventions for test files (co-located *.test.ts and *.test.tsx)
+paths:
+  - "**/*.test.tsx"
+  - "**/*.test.ts"
+---
+
+# Test file rules
+
+=== .claude/rules/react.md (frontmatter) ===
+---
+description: Conventions for React components and pages
+paths:
+  - "src/components/**/*"
+  - "src/pages/**/*"
+---
+
+# React component & page rules
+
+=== .claude/commands/review.md (frontmatter) ===
+---
+description: Run the e-commerce team's PR review checklist against a pull request or local diff
+argument-hint: <pr-number | "HEAD~1..HEAD" | path/to/file>
+allowed-tools:
+  - Read
+  - Grep
+  - Glob
+  - Bash(git diff:*)
+  - Bash(git log:*)
+  - Bash(git show:*)
+  - Bash(git status:*)
+  - Bash(gh pr diff:*)
+
+=== .claude/skills/deploy-check/SKILL.md (frontmatter) ===
+---
+name: deploy-check
+description: Run read-only pre-deployment validation in a forked sub-agent and report a single pass/fail summary back to the main session
+context: fork
+argument-hint: "[target-branch] (defaults to main)"
+allowed-tools:
+  - Read
+  - Grep
+  - Glob
+  - Bash(git status:*)
+  - Bash(git diff:*)
+  - Bash(git log:*)
+  - Bash(git rev-parse:*)
+  - Bash(git ls-files:*)
+  - Bash(gh pr view:*)
