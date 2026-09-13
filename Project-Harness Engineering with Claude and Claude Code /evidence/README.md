@@ -7,7 +7,7 @@ API traffic routed through the Vocareum gateway (`ANTHROPIC_BASE_URL=https://cla
 
 | System | Tests | Run artifact(s) | Key result |
 |--------|-------|-----------------|------------|
-| 1 Claims Intake | 29 passed (`system-1-claims/pytest.log`) | `summary.md`, `traces/`, `queues/` | 4 routed / 4 incomplete on `claude-sonnet-4-6`, $0.4321 |
+| 1 Claims Intake | 29 passed (`system-1-claims/pytest.log`) | `summary.md`, `traces/`, `queues/` | 8/8 terminal (all routed) on `claude-sonnet-4-6`, 0 incomplete, $0.7256 (post-fix; see brief Q20) |
 | 2 Retail Context | 30 passed (`system-2-retail/pytest.log`) | `budget.json`, `eval.jsonl`, `eval_control.jsonl`, `context.md` | 56.46% reduction, eval 6/6, control Q6 regressed |
 | 3 Claude Code Config | 35 passed (`system-3-claude-code/pytest.log`) | `validator_stdout.log`, `claude_tree.txt`, `config_snippets.txt` | validator `OK`, exit 0 |
 | 4 Multi-Shift Orchestration | 33 passed (`system-4-shift/pytest.log`) | `shift_stdout.log`, `hot_state.json`, `shift_scratchpad.jsonl`, `metrics.txt` | 1 defect returned vs 40 warm total, hot_state 661 B |

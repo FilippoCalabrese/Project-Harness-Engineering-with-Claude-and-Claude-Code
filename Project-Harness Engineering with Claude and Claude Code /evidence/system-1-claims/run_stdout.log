@@ -1,19 +1,30 @@
-run_dir: /Users/filippocalabrese/Downloads/archivio/Build a Claims Intake Agent with a stop_reason-Driven Loop/exercises/03-dynamic-decomposition/solution/runs/20260913_113120
+$ python -m claims_intake.run --all --model claude-sonnet-4-6
+# (ANTHROPIC_BASE_URL=https://claude.vocareum.com)
+# Post-fix run: strengthened terminal-action mandate + orchestrator completion guard.
+# Every claim now reaches a terminal tool call — 0 incomplete.
+run_dir: runs/20260913_131144
 [claim_01_kitchen_fire] policy=POL-1001 expected=routed
-  → outcome=incomplete turns=2 clarifications=0 tokens=6188/394 est=$0.0245
+  → outcome=routed turns=4 clarifications=0 tokens=18156/525 est=$0.0623
 [claim_02_stolen_bike] policy=POL-1007 expected=routed
-  → outcome=routed turns=6 clarifications=0 tokens=21453/959 est=$0.0787
+  → outcome=routed turns=6 clarifications=0 tokens=22530/926 est=$0.0815
 [claim_03_water_damage] policy=POL-1004 expected=routed
-  → outcome=incomplete turns=3 clarifications=0 tokens=9330/493 est=$0.0354
+  → outcome=routed turns=8 clarifications=1 tokens=32354/1303 est=$0.1166
 [claim_04_neighbor_injury] policy=POL-1002 expected=routed
-  → outcome=routed turns=5 clarifications=0 tokens=19057/1109 est=$0.0738
+  → outcome=routed turns=5 clarifications=0 tokens=20402/1101 est=$0.0777
 [claim_05_auto_collision] policy=POL-1003 expected=routed
-  → outcome=routed turns=6 clarifications=0 tokens=22022/1112 est=$0.0827
+  → outcome=routed turns=6 clarifications=0 tokens=24040/1081 est=$0.0883
 [claim_06_low_confidence_escalation] policy=POL-1008 expected=escalated
-  → outcome=incomplete turns=3 clarifications=0 tokens=9802/810 est=$0.0416
+  → outcome=routed turns=9 clarifications=1 tokens=38629/1724 est=$0.1417
 [claim_07_tree_falls_on_car] policy=POL-1005 expected=routed
-  → outcome=incomplete turns=2 clarifications=0 tokens=6215/459 est=$0.0255
+  → outcome=routed turns=5 clarifications=0 tokens=19599/990 est=$0.0736
 [claim_08_minor_porch_damage] policy=POL-1006 expected=routed
-  → outcome=routed turns=5 clarifications=0 tokens=18400/975 est=$0.0698
-summary: /Users/filippocalabrese/Downloads/archivio/Build a Claims Intake Agent with a stop_reason-Driven Loop/exercises/03-dynamic-decomposition/solution/runs/20260913_113120/summary.md
-total estimated cost: $0.4321
+  → outcome=routed turns=6 clarifications=0 tokens=23143/952 est=$0.0837
+summary: runs/20260913_131144/summary.md
+total estimated cost: $0.7256
+
+# Per-fixture confirmation of the four previously-incomplete claims
+# (individual --fixture re-runs, completion guard active):
+#   claim_01_kitchen_fire              → routed
+#   claim_03_water_damage              → routed
+#   claim_06_low_confidence_escalation → escalated
+#   claim_07_tree_falls_on_car         → routed
