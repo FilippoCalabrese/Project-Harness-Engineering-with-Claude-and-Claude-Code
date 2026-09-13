@@ -1,9 +1,13 @@
 # Stand-out 1 — Same system, two models (System 1)
 
 System 1 (Insurance Claims Intake) run against the same 8 fixtures on two models via the
-Vocareum gateway. Raw artifacts: `model-comparison/summary_haiku.md` (run `20260913_112904`)
-and `model-comparison/summary_sonnet.md` (run `20260913_113120`, also in
-`../evidence/system-1-claims/summary.md`).
+Vocareum gateway. This is the **pre-fix** comparison (harness held fixed, prompt unchanged),
+which is exactly what isolates model capability from harness correctness. Raw artifacts:
+`model-comparison/summary_haiku.md` (run `20260913_112904`) and
+`model-comparison/summary_sonnet.md` (run `20260913_113120`). Note: after this experiment I
+added the terminal-action fix + completion guard (brief Q20), so
+`../evidence/system-1-claims/summary.md` now holds the **post-fix** run of record
+`20260913_131144` (8/8 terminal), not this pre-fix sonnet run.
 
 ## Per-claim comparison
 
