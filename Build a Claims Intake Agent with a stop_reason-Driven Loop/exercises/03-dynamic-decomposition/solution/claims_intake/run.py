@@ -79,8 +79,69 @@ def _run_one(
                 budget=budget,
                 tracer=tracer,
             )
+
+            # Completion guard: the loop faithfully returns on end_turn, but the
+            # model can end its turn without a terminal tool call. Every claim MUST
+            # reach route_to_adjuster or escalate_to_human. Re-prompt once with an
+            # explicit reminder; the loop stays purely stop_reason-driven — this
+            # guard lives in the orchestrator, not the loop.
+            if not session.terminal_called:
+                reminder = {
+                    "role": "user",
+                    "content": (
+                        "You ended your turn without completing the claim. Every "
+                        "claim MUST end with exactly one terminal tool call: "
+                        "route_to_adjuster (if classification confidence >= 0.6) or "
+                        "escalate_to_human (otherwise). Do this now. Do not reply "
+                        "with text only."
+                    ),
+                }
+                state = run_loop(
+                    client=client,
+                    model=model,
+                    system=SYSTEM_PROMPT,
+                    tools=TOOL_SCHEMAS,
+                    messages=[*state.messages, reminder],
+                    tool_executor=executor,
+                    budget=budget,
+                    tracer=tracer,
+                )
         except (BudgetExceeded, UnexpectedStopReason) as exc:
             error = f"{type(exc).__name__}: {exc}"
+
+    # Deterministic fallback: if the model still declined to call a terminal tool,
+    # synthesize a structured escalation so no claim is ever left incomplete.
+    if error is None and not session.terminal_called:
+        executor(
+            "escalate_to_human",
+            {
+                "reason": "incomplete_no_terminal_action",
+                "structured_summary": {
+                    "policy_id": session.policy_id,
+                    "root_cause": (
+                        "Agent ended its turn without calling a terminal tool even "
+                        "after an explicit reminder; auto-escalated by the completion "
+                        "guard so the claim does not stall."
+                    ),
+                    "candidate_claim_types": (
+                        [session.classification["claim_type"]]
+                        if session.classification is not None
+                        else []
+                    ),
+                    "case_facts": dict(session.case_facts),
+                    "recommended_action": (
+                        "Human reviewer to classify and route; the agent could not "
+                        "reach a confident terminal decision on its own."
+                    ),
+                    "confidence": (
+                        float(session.classification["confidence"])
+                        if session.classification is not None
+                        else 0.0
+                    ),
+                },
+            },
+        )
+
     return FixtureResult(
         fixture=fixture,
         session=session,
