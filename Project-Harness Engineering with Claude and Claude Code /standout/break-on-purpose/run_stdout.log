@@ -1,0 +1,5 @@
+run_dir: /Users/filippocalabrese/Downloads/archivio/Build a Claims Intake Agent with a stop_reason-Driven Loop/exercises/03-dynamic-decomposition/solution/runs/20260913_114932
+[claim_99_ambiguous_standout] policy=POL-1004 expected=escalated
+  → outcome=escalated turns=5 clarifications=1 tokens=17689/1155 est=$0.0704
+summary: /Users/filippocalabrese/Downloads/archivio/Build a Claims Intake Agent with a stop_reason-Driven Loop/exercises/03-dynamic-decomposition/solution/runs/20260913_114932/summary.md
+total estimated cost: $0.0704

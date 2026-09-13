@@ -1,0 +1,12 @@
+{
+  "claim_id": "claim_99_ambiguous_standout",
+  "policy_id": "POL-1004",
+  "initial_message": "There's water damage along the shared wall between my unit and my neighbor's. I genuinely don't know where it started — it could be my own pipes behind that wall, or it could be a leak coming through from the neighbor's side. The drywall is soaked and the flooring is warped near the wall. Policy POL-1004.",
+  "clarification_responses": {},
+  "expected_outcome": "escalated",
+  "expected_type": null,
+  "expected_severity": "medium",
+  "ambiguous": true,
+  "candidates": ["property_damage", "liability"],
+  "note": "STAND-OUT (break-on-purpose) fixture: origin is genuinely unknowable and the claimant returns NO_RESPONSE to any clarification, so the agent should escalate rather than route at low confidence."
+}
